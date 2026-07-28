@@ -1,0 +1,18 @@
+{
+    "name": "aluno/loja_online",
+    "description": "Sistema de loja virtual desenvolvido na UC12",
+    "type": "project",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Aluno\\LojaOnline\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Francico jose duarte silva"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
