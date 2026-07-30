@@ -1,18 +1,21 @@
 {
-    "name": "aluno/loja_online",
+    "name": "aluno/loja_oline",
     "description": "Sistema de loja virtual desenvolvido na UC12",
     "type": "project",
     "license": "proprietary",
     "autoload": {
         "psr-4": {
-            "Aluno\\LojaOnline\\": "src/"
+            "App\\": "src/"
         }
     },
     "authors": [
         {
-            "name": "Francico jose duarte silva"
+            "name": "josesilva",
+            "email": "franciscojoseduartesilva@gmail.com"
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
 }
