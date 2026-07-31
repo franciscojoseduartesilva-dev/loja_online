@@ -1,0 +1,21 @@
+{
+    "name": "aluno/loja_oline",
+    "description": "Sistema de loja virtual desenvolvido na UC12",
+    "type": "project",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "josesilva",
+            "email": "franciscojoseduartesilva@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

@@ -3,222 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tecnomais Standby | Em Construção</title>
-    <!-- Google Fonts & FontAwesome para ícones -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>loja_olinetecnomais - Os Melhores Smartphones</title>
     <style>
+        /* Reset e Estilos Gerais */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #0b0f19;
-            color: #f3f4f6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow-x: hidden;
+            background-color: #f4f6f9;
+            color: #333;
         }
 
-        /* Efeito de Fundo Tecnológico */
-        .bg-glow {
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, #0066ff 0%, #00f2fe 100%);
-            filter: blur(150px);
-            border-radius: 50%;
-            z-index: -1;
-            top: -100px;
-            right: -100px;
-            opacity: 0.4;
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
+        /* Cabeçalho / Navbar */
         header {
-            padding: 2rem;
+            background-color: #0f172a;
+            color: #fff;
+            padding: 1rem 5%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #38bdf8;
         }
 
-        .logo span {
-            color: #00f2fe;
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
         }
 
-        main {
-            flex: 1;
+        .nav-links a:hover {
+            color: #38bdf8;
+            transition: 0.3s;
+        }
+
+        .carrinho-btn {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        .btn-principal {
+            background-color: #2563eb;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-principal:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Seção de Produtos */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #0f172a;
+        }
+
+        .grid-produtos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .card-produto {
+            background-color: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
+            justify-content: space-between;
         }
 
-        .badge {
-            background: rgba(0, 242, 254, 0.1);
-            color: #00f2fe;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .card-produto:hover {
+            transform: translateY(-5px);
         }
 
-        h1 {
-            font-size: clamp(2.2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        h1 span {
-            background: linear-gradient(135deg, #0066ff 0%, #00f2fe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        p {
-            font-size: 1.1rem;
-            color: #9ca3af;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
-        }
-
-        /* Formulário de Inscrição / Alerta */
-        .subscribe-box {
-            display: flex;
-            gap: 10px;
-            width: 100%;
-            max-width: 450px;
-            margin-bottom: 2rem;
-        }
-
-        .subscribe-box input {
-            flex: 1;
-            padding: 0.9rem 1.2rem;
-            border-radius: 8px;
-            border: 1px solid #1f2937;
-            background: #111827;
-            color: #fff;
-            outline: none;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .subscribe-box input:focus {
-            border-color: #00f2fe;
-        }
-
-        .subscribe-box button {
-            padding: 0.9rem 1.5rem;
-            border-radius: 8px;
-            border: none;
-            background: linear-gradient(135deg, #0066ff 0%, #00f2fe 100%);
-            color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            transition: opacity 0.3s;
-        }
-
-        .subscribe-box button:hover {
-            opacity: 0.9;
-        }
-
-        /* Redes Sociais / Contato */
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 1rem;
-        }
-
-        .social-icons a {
-            width: 45px;
-            height: 45px;
-            background: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 50%;
+        .img-container {
+            background-color: #e2e8f0;
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #f3f4f6;
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        .info-produto {
+            padding: 20px;
+        }
+
+        .info-produto h3 {
             font-size: 1.2rem;
-            text-decoration: none;
-            transition: all 0.3s;
+            margin-bottom: 10px;
         }
 
-        .social-icons a:hover {
-            background: #00f2fe;
-            color: #0b0f19;
-            border-color: #00f2fe;
-            transform: translateY(-3px);
-        }
-
-        footer {
-            padding: 1.5rem;
-            text-align: center;
+        .preco-antigo {
+            text-decoration: line-through;
+            color: #94a3b8;
             font-size: 0.9rem;
-            color: #6b7280;
-            border-top: 1px solid #1f2937;
         }
 
-        @media (max-width: 600px) {
-            .subscribe-box {
-                flex-direction: column;
-            }
+        .preco {
+            font-size: 1.5rem;
+            color: #16a34a;
+            font-weight: bold;
+            margin: 5px 0 15px 0;
+        }
+
+        .btn-comprar {
+            width: 100%;
+            background-color: #0f172a;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-comprar:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
-
+    <!-- Cabeçalho -->
     <header>
-        <div class="logo">TECNOmais <span>Standby</span></div>
+        <div class="logo">loja_olinetecnomais</div>
+        <ul class="nav-links">
+            <li><a href="#">Início</a></li>
+            <li><a href="#">Smartphones</a></li>
+            <li><a href="#">Acessórios</a></li>
+            <li><a href="#">Contato</a></li>
+        </ul>
+        <a href="#" class="carrinho-btn">🛒 Carrinho (0)</a>
     </header>
 
-    <main>
-        <div class="badge">
-            <i class="fa-solid fa-microchip"></i> Nova Experiência Tecnológica
-        </div>
+    <!-- Banner Principal -->
+    <section class="hero">
+        <h1>O Smartphone Ideal para Você</h1>
+        <p>As melhores marcas com garantia, suporte e entrega rápida para todo o Brasil.</p>
+        <a href="#produtos" class="btn-principal">Ver Promoções</a>
+    </section>
 
-        <h1>Estamos preparando <span>algo incrível</span> para você!</h1>
+    <!-- Seção de Produtos -->
+    <div class="container" id="produtos">
+        <h2 class="titulo-secao">Lançamentos & Destaques</h2>
         
-        <p>A <strong>Tecnomais Standby</strong> está chegando com as melhores soluções, gadgets e inovações do mercado. Inscreva-se abaixo para ser o primeiro a saber quando lançarmos e garantir ofertas exclusivas.</p>
+        <div class="grid-produtos">
+            
+            <!-- Produto 1 -->
+            <div class="card-produto">
+                <div class="img-container">Foto do Smartphone 1</div>
+                <div class="info-produto">
+                    <h3>TecnoPhone Pro Max</h3>
+                    <p class="preco-antigo">R$ 3.499,00</p>
+                    <p class="preco">R$ 2.899,00</p>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
 
-        <form class="subscribe-box" onsubmit="event.preventDefault(); alert('Obrigado! Em breve entraremos em contato com novidades.');">
-            <input type="email" placeholder="Digite seu melhor e-mail" required>
-            <button type="submit">Avise-me</button>
-        </form>
+            <!-- Produto 2 -->
+            <div class="card-produto">
+                <div class="img-container">Foto do Smartphone 2</div>
+                <div class="info-produto">
+                    <h3>TecnoPhone Lite</h3>
+                    <p class="preco-antigo">R$ 1.899,00</p>
+                    <p class="preco">R$ 1.399,00</p>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
 
-        <div class="social-icons">
-            <a href="#" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a href="#" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <!-- Produto 3 -->
+            <div class="card-produto">
+                <div class="img-container">Foto do Smartphone 3</div>
+                <div class="info-produto">
+                    <h3>TecnoPhone Ultra Z</h3>
+                    <p class="preco-antigo">R$ 5.299,00</p>
+                    <p class="preco">R$ 4.599,00</p>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="card-produto">
+                <div class="img-container">Foto do Smartphone 4</div>
+                <div class="info-produto">
+                    <h3>TecnoPhone Gamer X</h3>
+                    <p class="preco-antigo">R$ 3.999,00</p>
+                    <p class="preco">R$ 3.299,00</p>
+                    <button class="btn-comprar">Comprar Agora</button>
+                </div>
+            </div>
+
         </div>
-    </main>
+    </div>
 
+    <!-- Rodapé -->
     <footer>
-        <p>&copy; 2026 Tecnomais Standby. Todos os direitos reservados.</p>
+        <p>&copy; 2026 loja_onlinetecnomais. Todos os direitos reservados.</p>
     </footer>
 
 </body>

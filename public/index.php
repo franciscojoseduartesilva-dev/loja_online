@@ -8,8 +8,10 @@ $raizProjeto = dirname(__DIR__);
 
 $rotas = array_merge(
     require $raizProjeto . '/routes/web.php',
-   
+    require $raizProjeto . '/routes/contato.php',
+    require $raizProjeto . '/routes/Termos.php'
 );
+
 
 $metodoHttp = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 

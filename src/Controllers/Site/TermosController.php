@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controllers\Site;
 
-class HomeController
+class TermosController
 {
     public function index(): void
     {
-        $arquivoView = dirname(__DIR__, 3) . '/views/site/home.php';
+        $arquivoView = dirname(__DIR__, 3) . '/views/site/termos.php';
 
         if (!is_file($arquivoView)) {
             throw new \RuntimeException(
