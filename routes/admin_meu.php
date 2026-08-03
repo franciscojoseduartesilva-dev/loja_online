@@ -2,18 +2,15 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\TermosController;
-
-
+use App\Controllers\Admin\DashboardController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/Termos',
+        'path' => '/admin',
         'action' => [
-            TermosController::class,
+            DashboardController::class,
             'index',
         ],
     ],
-    
 ];
