@@ -10,6 +10,7 @@ $rotas = array_merge(
     require $raizProjeto . '/routes/web.php',
     require $raizProjeto . '/routes/contato.php',
     require $raizProjeto . '/routes/Termos.php',
+    require $raizProjeto . '/routes/loginadmin',
     
 
 
