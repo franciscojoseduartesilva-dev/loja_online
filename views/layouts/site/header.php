@@ -1,71 +1,85 @@
-<?php
+<header class="sticky-top bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light py-3">
+            <div class="container">
+                <a class="navbar-brand text-primary" href="">Loja Online</a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Alternar navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-declare(strict_types=1);
+                <div class="collapse navbar-collapse" id="mainNavbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="produtos">Produtos</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="categorias" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Categorias
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="categoria/informatica">Informática</a></li>
+                                <li><a class="dropdown-item" href="categoria/celulares">Celulares</a></li>
+                                <li><a class="dropdown-item" href="categoria/acessorios">Acessórios</a></li>
+                                <li><a class="dropdown-item" href="categoria/casa-decoracao">Casa e decoração</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item fw-bold" href="categorias">Ver todas</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ofertas">Ofertas</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ajuda
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="ajuda">Central de ajuda</a></li>
+                                <li><a class="dropdown-item" href="faq">Perguntas frequentes</a></li>
+                                <li><a class="dropdown-item" href="rastrear-pedido">Rastrear pedido</a></li>
+                                <li><a class="dropdown-item" href="trocas-devolucoes">Trocas e devoluções</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="contato">Fale conosco</a></li>
+                            </ul>
+                        </li>
+                    </ul>
 
-$tituloPagina = $tituloPagina
-    ?? 'Loja Online';
+                    <!-- Formulário de pesquisa -->
+                    <form class="d-flex me-lg-3 mb-3 mb-lg-0" role="search" method="get" action="buscar">
+                        <div class="input-group">
+                            <input class="form-control" type="search" name="q" placeholder="Pesquisar produtos..." aria-label="Pesquisar produtos" required>
+                            <button class="btn btn-outline-primary" type="submit" aria-label="Buscar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form>
 
-$descricaoPagina = $descricaoPagina
-    ?? 'Loja Online';
+                    <!-- Menu da conta e Carrinho -->
+                    <div class="d-flex align-items-center">
+                        <div class="dropdown me-3">
+                            <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle fs-5 me-1"></i>
+                                <span class="d-none d-xl-inline">Conta</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="cliente/login">Entrar</a></li>
+                                <li><a class="dropdown-item" href="cliente/cadastro">Criar conta</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="cliente/pedidos">Meus pedidos</a></li>
+                            </ul>
+                        </div>
 
-$baseUrl = defined('BASE_URL')
-    ? BASE_URL
-    : '';
-
-?>
-<!doctype html>
-<html lang="pt-BR">
-<head>
-    <meta charset="utf-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
-
-    <meta
-        name="description"
-        content="<?=
-            htmlspecialchars(
-                $descricaoPagina,
-                ENT_QUOTES,
-                'UTF-8'
-            )
-        ?>"
-    >
-
-    <title>
-        <?=
-            htmlspecialchars(
-                $tituloPagina,
-                ENT_QUOTES,
-                'UTF-8'
-            )
-        ?>
-        — Loja Online
-    </title>
-
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
-
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-    >
-
-    <link
-        rel="stylesheet"
-        href="<?=
-            htmlspecialchars(
-                $baseUrl
-                    . '/assets/css/site.css',
-                ENT_QUOTES,
-                'UTF-8'
-            )
-        ?>"
-    >
-</head>
-
-<body class="bg-body-tertiary">
+                        <a href="carrinho" class="btn btn-primary position-relative d-flex align-items-center" aria-label="Carrinho de compras">
+                            <i class="bi bi-cart3 fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                3
+                                <span class="visually-hidden">itens no carrinho</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
