@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\CategoriasController;
+use App\Controllers\Site\CelularesController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/categorias',
+        'path' => '/celulares',
         'action' => [
-            CategoriasController::class,
+            CelularesController::class,
             'index',
         ],
     ],

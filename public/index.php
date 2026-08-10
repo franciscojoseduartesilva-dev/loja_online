@@ -49,7 +49,19 @@ $rotas = array_merge(
     require $raizProjeto . '/routes/logadm.php',
     require $raizProjeto . '/routes/admin.php',
     require $raizProjeto . '/routes/produtos.php',
-    require $raizProjeto . '/routes/Categorias.php'
+    require $raizProjeto . '/routes/categorias.php',
+    require $raizProjeto . '/routes/ofertas.php',
+    require $raizProjeto . '/routes/Ajuda.php',
+    require $raizProjeto . '/routes/rastrearpedido.php',
+    require $raizProjeto . '/routes/informatica.php',
+    require $raizProjeto . '/routes/Centraldeajuda.php',
+    require $raizProjeto . '/routes/Pesquisarprodutos.php',
+    require $raizProjeto . '/routes/Conta.php',
+    
+    
+
+    
+    
 );
 /*
 |--------------------------------------------------------------------------

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\CategoriasController;
+use App\Controllers\Site\ajudaController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/categorias',
+        'path' => '/ajuda',
         'action' => [
-            CategoriasController::class,
+            ajudaController::class,
             'index',
         ],
     ],

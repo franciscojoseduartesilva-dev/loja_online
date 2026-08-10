@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\CategoriasController;
+use App\Controllers\Site\RastrearPedidoController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/categorias',
+        'path' => '/rastrearpedido',
         'action' => [
-            CategoriasController::class,
+            RastrearPedidoController::class,
             'index',
         ],
     ],

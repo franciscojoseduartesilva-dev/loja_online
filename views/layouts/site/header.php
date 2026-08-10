@@ -20,12 +20,12 @@
                                 Categorias
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="categoria/informatica">Informática</a></li>
-                                <li><a class="dropdown-item" href="categoria/celulares">Celulares</a></li>
-                                <li><a class="dropdown-item" href="categoria/acessorios">Acessórios</a></li>
-                                <li><a class="dropdown-item" href="categoria/casa-decoracao">Casa e decoração</a></li>
+                                <li><a class="dropdown-item" href="categorias/?v=1">Informática</a></li>
+                                <li><a class="dropdown-item" href="categorias/?v=2">Celulares</a></li>
+                                <li><a class="dropdown-item" href="categorias/?v=3">Acessórios</a></li>
+                                <li><a class="dropdown-item" href="categorias/?v=4">Casa e decoração</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item fw-bold" href="categorias">Ver todas</a></li>
+                                <li><a class="dropdown-item fw-bold" href="categorias/?v=0">Ver todas</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

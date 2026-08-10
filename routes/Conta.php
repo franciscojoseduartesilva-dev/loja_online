@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\CategoriasController;
+use App\Controllers\Site\ContaController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/categorias',
+        'path' => '/conta',
         'action' => [
-            CategoriasController::class,
+            ContaController::class,
             'index',
         ],
     ],
