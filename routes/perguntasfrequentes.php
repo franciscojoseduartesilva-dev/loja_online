@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\ContaController;
+use App\Controllers\Site\PerguntasFrequentesController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/conta',
+        'path' => '/faq',
         'action' => [
-            ContaController::class,
+            PerguntasFrequentesController::class,
             'index',
         ],
     ],

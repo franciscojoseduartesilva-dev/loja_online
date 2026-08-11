@@ -53,10 +53,17 @@ $rotas = array_merge(
     require $raizProjeto . '/routes/ofertas.php',
     require $raizProjeto . '/routes/Ajuda.php',
     require $raizProjeto . '/routes/rastrearpedido.php',
+    require $raizProjeto . '/routes/trocasedevoluções.php',
+    require $raizProjeto . '/routes/faleconosco.php',
     require $raizProjeto . '/routes/informatica.php',
     require $raizProjeto . '/routes/Centraldeajuda.php',
+    require $raizProjeto . '/routes/perguntasfrequentes.php',
     require $raizProjeto . '/routes/Pesquisarprodutos.php',
-    require $raizProjeto . '/routes/Conta.php',
+    require $raizProjeto . '/routes/Entrar.php',
+    require $raizProjeto . '/routes/Criarconta.php',
+    require $raizProjeto . '/routes/MeusPedidos.php',
+    require $raizProjeto . '/routes/itensnocarrinho.php',
+    
     
     
 

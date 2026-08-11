@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\RastrearPedidoController;
+use App\Controllers\Site\ItensnoCarrinhoController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/rastrear-pedido',
+        'path' => '/carrinho',
         'action' => [
-            RastrearPedidoController::class,
+            ItensnoCarrinhoController::class,
             'index',
         ],
     ],

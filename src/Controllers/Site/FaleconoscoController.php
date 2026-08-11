@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controllers\Site;
 
-class ContaController
+class FaleconoscoController
 {
     public function index(): void
     {
-        $arquivoView = dirname(__DIR__, 3) . '/views/site/conta.php';
+        $arquivoView = dirname(__DIR__, 3) . '/views/site/faleconosco.php';
 
         if (!is_file($arquivoView)) {
             throw new \RuntimeException(
