@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controllers\Site;
 
-class CategoriasController
+class HomeController
 {
     public function index(): void
     {
-        $arquivoView = dirname(__DIR__, 3) . '/views/site/categorias.php';
+        $arquivoView = dirname(__DIR__, 3) . '/views/site/home.php';
 
         if (!is_file($arquivoView)) {
             throw new \RuntimeException(
