@@ -8,7 +8,7 @@ class InformaticaController
 {
     public function index(): void
     {
-        $arquivoView = dirname(__DIR__, 3) . '/views/site/informatica.php';
+        $arquivoView = dirname(__DIR__, 3) . '/views/site/Informatica.php';
 
         if (!is_file($arquivoView)) {
             throw new \RuntimeException(

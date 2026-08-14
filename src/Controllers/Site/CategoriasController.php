@@ -8,7 +8,7 @@ class CategoriasController
 {
     public function index(): void
     {
-        $arquivoView = dirname(__DIR__, 3) . '/views/site/categorias.php';
+        $arquivoView = dirname(__DIR__, 3) . '/views/site/produtos.php';
 
         if (!is_file($arquivoView)) {
             throw new \RuntimeException(

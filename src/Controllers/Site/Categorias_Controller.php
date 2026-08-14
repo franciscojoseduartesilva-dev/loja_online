@@ -1,3 +1,4 @@
+
 <?php
 
 declare(strict_types=1);
@@ -19,3 +20,4 @@ class CategoriasController
         require $arquivoView;
     }
 }
+

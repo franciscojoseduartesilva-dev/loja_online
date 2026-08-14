@@ -214,7 +214,13 @@
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
     <main>
-        criarconta
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    Criar conta
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Rodapé -->

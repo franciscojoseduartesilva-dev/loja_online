@@ -214,7 +214,13 @@
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
     <main>
-        informatica
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    fAQ
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Rodapé -->

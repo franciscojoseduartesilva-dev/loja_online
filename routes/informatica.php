@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\InformaticaController;
+use App\Controllers\Site\InformáticaController;
 
 return [
     [
         'method' => 'GET',
-        'path' => '/informatica',
+        'path' => '/informática',
         'action' => [
-            InformaticaController::class,
+            InformáticaController::class,
             'index',
         ],
     ],

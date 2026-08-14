@@ -45,16 +45,19 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 |--------------------------------------------------------------------------
 */
 $rotas = array_merge(
-    require $raizProjeto . '/routes/site.php',
+    require $raizProjeto . '/routes/web.php',
     require $raizProjeto . '/routes/logadm.php',
-    require $raizProjeto . '/routes/admin.php',
     require $raizProjeto . '/routes/produtos.php',
     require $raizProjeto . '/routes/categorias.php',
     require $raizProjeto . '/routes/ofertas.php',
-    require $raizProjeto . '/routes/Ajuda.php',
+    require $raizProjeto . '/routes/ajuda.php',
+    require $raizProjeto . '/routes/ajudafaq.php',
+    require $raizProjeto . '/routes/ajudarastrear.php',
+    require $raizProjeto . '/routes/ajudatroca.php',
     require $raizProjeto . '/routes/rastrearpedido.php',
     require $raizProjeto . '/routes/trocasedevoluções.php',
     require $raizProjeto . '/routes/faleconosco.php',
+    require $raizProjeto . '/routes/busca.php',
     require $raizProjeto . '/routes/informatica.php',
     require $raizProjeto . '/routes/Centraldeajuda.php',
     require $raizProjeto . '/routes/perguntasfrequentes.php',
@@ -63,12 +66,6 @@ $rotas = array_merge(
     require $raizProjeto . '/routes/Criarconta.php',
     require $raizProjeto . '/routes/MeusPedidos.php',
     require $raizProjeto . '/routes/itensnocarrinho.php',
-    
-    
-    
-
-    
-    
 );
 /*
 |--------------------------------------------------------------------------

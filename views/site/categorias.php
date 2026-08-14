@@ -214,7 +214,7 @@
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
     <main>
-        Categorias
+        error
     </main>
 
     <!-- Rodapé -->
