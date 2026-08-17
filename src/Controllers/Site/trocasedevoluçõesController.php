@@ -4,7 +4,7 @@ namespace App\Controllers\Site;
 use App\Helpers\IdSeguro;
 use App\Repositories\CategoriaRepository;
 use RuntimeException;
-class TrocasEdevoluçõesController
+class OfertasController
 {
     public function index(): void
     {
@@ -65,7 +65,7 @@ class TrocasEdevoluçõesController
         */
         $arquivoView =
             $raizProjeto
-            . '/views/site/trocasedevoluções.php';
+            . '/views/site/ofertas.php';
         if (!is_file($arquivoView)) {
             throw new RuntimeException(
                 'A página de ofertas não foi encontrada.'

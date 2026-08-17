@@ -214,7 +214,13 @@
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
     <main>
-        Ajuda a qui
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    Ofertas a qui
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Rodapé -->

@@ -4,7 +4,7 @@ namespace App\Controllers\Site;
 use App\Helpers\IdSeguro;
 use App\Repositories\CategoriaRepository;
 use RuntimeException;
-class meusPedidosController
+class MeuspedidosController
 {
     public function index(): void
     {

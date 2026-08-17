@@ -1,3 +1,46 @@
+<?php
+// Caso o Controller ainda não esteja enviando $ofertas, usamos dados dinâmicos de teste
+if (empty($ofertas)) {
+    $ofertas = [
+        [
+            'id' => 1,
+            'nome' => 'Smartphone Galaxy S23 Ultra 256GB',
+            'preco' => 4999.00,
+            'preco_antigo' => 6999.00,
+            'imagem' => 'smartphone.jpg',
+            'imagem_url' => 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500&auto=format&fit=crop',
+            'slug' => 'smartphone-galaxy-s23-ultra'
+        ],
+        [
+            'id' => 2,
+            'nome' => 'Notebook Gamer Core i7 16GB RTX 3060',
+            'preco' => 5499.90,
+            'preco_antigo' => 6200.00,
+            'imagem' => 'notebook.jpg',
+            'imagem_url' => 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500&auto=format&fit=crop',
+            'slug' => 'notebook-gamer-i7'
+        ],
+        [
+            'id' => 3,
+            'nome' => 'Monitor Gamer 27" 165Hz 1ms',
+            'preco' => 1299.00,
+            'preco_antigo' => 1599.00,
+            'imagem' => 'monitor.jpg',
+            'imagem_url' => 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500&auto=format&fit=crop',
+            'slug' => 'monitor-gamer-27'
+        ],
+        [
+            'id' => 4,
+            'nome' => 'Headset Sem Fio Bluetooth com Cancelamento de Ruído',
+            'preco' => 350.00,
+            'preco_antigo' => 499.00,
+            'imagem' => 'headset.jpg',
+            'imagem_url' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop',
+            'slug' => 'headset-sem-fio'
+        ]
+    ];
+}
+?>
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -39,7 +82,7 @@
         body {
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
             color: var(--dark-color);
-            background-color: #fff;
+            background-color: #f8f9fa;
         }
 
         /* Top Bar */
@@ -59,63 +102,37 @@
             color: #fff;
         }
 
-        /* Navbar Principal */
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary-color) !important;
-        }
-
-        .search-form .form-control {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .search-form .btn {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
         /* Hero Banner */
         .hero-section {
             background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
             color: #fff;
-            padding: 5rem 0;
-            border-radius: 0.5rem;
+            padding: 4rem 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
         }
 
         .hero-section .lead {
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        /* Benefícios */
-        .benefit-box {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .benefit-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important;
-        }
-
-        /* Cards Gerais (Categorias e Produtos) */
+        /* Cards Gerais */
         .card {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             border: 1px solid rgba(0,0,0,.08);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: #fff;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.12) !important;
         }
 
         .card-img-top {
             object-fit: cover;
-            height: 200px;
-        }
-
-        .category-card .card-img-top {
-            height: 160px;
+            height: 220px;
+            width: 100%;
         }
 
         /* Tratamento visual para imagens ausentes */
@@ -126,19 +143,18 @@
             justify-content: center;
             color: #6c757d;
             font-size: 2.5rem;
-            height: 200px;
-        }
-
-        .category-card .img-fallback {
-            height: 160px;
+            height: 220px;
         }
 
         /* Ofertas e Selos */
         .badge-discount {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 12px;
+            right: 12px;
             z-index: 2;
+            font-size: 0.85rem;
+            padding: 0.4em 0.6em;
+            border-radius: 0.4rem;
         }
 
         .product-old-price {
@@ -148,43 +164,12 @@
         }
 
         .product-current-price {
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             font-weight: 700;
             color: var(--primary-color);
         }
 
-        /* Banner Promocional */
-        .promo-banner {
-            background: linear-gradient(45deg, #212529, #343a40);
-            color: #fff;
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-
-        /* Rodapé */
-        footer {
-            background-color: #1a1d20;
-            color: #adb5bd;
-            font-size: 0.9rem;
-        }
-
-        footer h5 {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        footer a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
-        /* Responsividade Ajustada */
+        /* Responsividade */
         @media (max-width: 991.98px) {
             .top-bar {
                 display: none;
@@ -199,8 +184,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <span class="me-3"><i class="bi bi-truck me-1"></i> Frete grátis para todo o Brasil nas compras acima de R$ 199</span>
-                    <span><i class="bi bi-headset me-1"></i> Atendimento: (11) 99999-9999</span>
+                    <span class="me-3"><i class="bi bi-truck me-1"></i> Frete grátis nas compras acima de R$ 199</span>
+                    <span><i class="bi bi-headset me-1"></i> (11) 99999-9999</span>
                 </div>
                 <div class="col-md-6 text-end">
                     <a href="rastrear-pedido" class="me-3">Rastrear pedido</a>
@@ -210,21 +195,126 @@
         </div>
     </div>
 
-    <!-- Navbar -->
-    <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
+    <!-- Layout de Header de Incluir (se configurado) -->
+    <?php 
+        if (defined('APP_ROOT') && file_exists(APP_ROOT . '/views/layouts/site/header.php')) {
+            require_once APP_ROOT . '/views/layouts/site/header.php'; 
+        }
+    ?>
 
-    <main>
+    <main class="py-4">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    Ofertas
+
+            <!-- Banner Promocional Principal (Hero Section) -->
+            <section class="hero-section text-center text-md-start shadow-sm">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 class="display-5 fw-bold mb-3">Semana da Tecnologia</h1>
+                        <p class="lead mb-4">Descontos imperdíveis em smartphones, notebooks e acessórios gamer com até 40% OFF e entrega rápida.</p>
+                        <a href="#ofertas" class="btn btn-light btn-lg fw-semibold px-4 text-primary">Aproveitar Ofertas</a>
+                    </div>
                 </div>
-            </div>
+            </section>
+
+            <!-- Seção de Ofertas Especiais -->
+            <section id="ofertas" class="pt-3">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="h3 mb-0 fw-bold text-danger">
+                        <i class="bi bi-fire me-2"></i>Ofertas Especiais
+                    </h2>
+                    <span class="text-muted small">Por tempo limitado</span>
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                    <?php if (!empty($ofertas)): ?>
+                        <?php foreach ($ofertas as $oferta): ?>
+                            <div class="col">
+                                <div class="card h-100 shadow-sm position-relative">
+                                    
+                                    <!-- Selo de Oferta / Desconto -->
+                                    <?php if (!empty($oferta['preco_antigo']) && $oferta['preco_antigo'] > $oferta['preco']): ?>
+                                        <?php 
+                                            $percentualDesconto = round((($oferta['preco_antigo'] - $oferta['preco']) / $oferta['preco_antigo']) * 100);
+                                        ?>
+                                        <span class="badge bg-danger badge-discount fw-semibold">
+                                            -<?= $percentualDesconto ?>% OFF
+                                        </span>
+                                    <?php else: ?>
+                                        <span class="badge bg-danger badge-discount fw-semibold">
+                                            Oferta
+                                        </span>
+                                    <?php endif; ?>
+
+                                    <!-- Imagem do Produto (Verifica Local, URL de Teste ou Fallback) -->
+                                    <?php if (!empty($oferta['imagem']) && file_exists('assets/img/produtos/' . $oferta['imagem'])): ?>
+                                        <img src="assets/img/produtos/<?= htmlspecialchars($oferta['imagem'], ENT_QUOTES, 'UTF-8') ?>" 
+                                             class="card-img-top" 
+                                             alt="<?= htmlspecialchars($oferta['nome'], ENT_QUOTES, 'UTF-8') ?>">
+                                    <?php elseif (!empty($oferta['imagem_url'])): ?>
+                                        <img src="<?= htmlspecialchars($oferta['imagem_url'], ENT_QUOTES, 'UTF-8') ?>" 
+                                             class="card-img-top" 
+                                             alt="<?= htmlspecialchars($oferta['nome'], ENT_QUOTES, 'UTF-8') ?>">
+                                    <?php else: ?>
+                                        <div class="img-fallback">
+                                            <i class="bi bi-image text-secondary"></i>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <!-- Corpo do Card -->
+                                    <div class="card-body d-flex flex-column">
+                                        <h3 class="card-title h6 text-dark text-truncate mb-2" title="<?= htmlspecialchars($oferta['nome'], ENT_QUOTES, 'UTF-8') ?>">
+                                            <?= htmlspecialchars($oferta['nome'], ENT_QUOTES, 'UTF-8') ?>
+                                        </h3>
+
+                                        <!-- Preços -->
+                                        <div class="mt-auto pt-2 mb-3">
+                                            <?php if (!empty($oferta['preco_antigo']) && $oferta['preco_antigo'] > $oferta['preco']): ?>
+                                                <span class="product-old-price d-block">
+                                                    R$ <?= number_format((float) $oferta['preco_antigo'], 2, ',', '.') ?>
+                                                </span>
+                                            <?php endif; ?>
+                                            <span class="product-current-price">
+                                                R$ <?= number_format((float) $oferta['preco'], 2, ',', '.') ?>
+                                            </span>
+                                        </div>
+
+                                        <!-- Ações (Botões) -->
+                                        <div class="d-grid gap-2">
+                                            <a href="produto/<?= htmlspecialchars($oferta['slug'] ?? $oferta['id'], ENT_QUOTES, 'UTF-8') ?>" 
+                                               class="btn btn-outline-secondary btn-sm">
+                                                <i class="bi bi-eye me-1"></i> Ver detalhes
+                                            </a>
+
+                                            <form action="carrinho/adicionar" method="POST" class="d-grid">
+                                                <input type="hidden" name="produto_id" value="<?= htmlspecialchars($oferta['id'], ENT_QUOTES, 'UTF-8') ?>">
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                    <i class="bi bi-cart-plus me-1"></i> Adicionar
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <div class="col-12 text-center py-5">
+                            <i class="bi bi-tag-fill display-1 text-muted"></i>
+                            <p class="mt-3 text-muted fs-5">Nenhuma oferta disponível no momento.</p>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </section>
         </div>
     </main>
 
-    <!-- Rodapé -->
-    <?php require_once APP_ROOT . '/views/layouts/site/footer.php'; ?>
+    <!-- Layout de Rodapé de Incluir (se configurado) -->
+    <?php 
+        if (defined('APP_ROOT') && file_exists(APP_ROOT . '/views/layouts/site/footer.php')) {
+            require_once APP_ROOT . '/views/layouts/site/footer.php'; 
+        }
+    ?>
+    
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

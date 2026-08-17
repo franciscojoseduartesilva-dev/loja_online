@@ -214,7 +214,36 @@
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
     <main>
-        Ajuda a qui
+        <?php foreach ($produtos as $produto): ?>
+
+    <div class="card-produto">
+
+        <h3>
+            <?=
+                htmlspecialchars(
+                    $produto['nome'],
+                    ENT_QUOTES,
+                    'UTF-8'
+                )
+            ?>
+        </h3>
+
+        <p>
+            R$
+            <?=
+                number_format(
+                    (float) $produto['preco'],
+                    2,
+                    ',',
+                    '.'
+                )
+            ?>
+        </p>
+
+    </div>
+
+<?php endforeach; ?>
+
     </main>
 
     <!-- Rodapé -->

@@ -4,7 +4,7 @@ namespace App\Controllers\Site;
 use App\Helpers\IdSeguro;
 use App\Repositories\CategoriaRepository;
 use RuntimeException;
-class ItensnoCarrinhoController
+class ItensnocarrinhoController
 {
     public function index(): void
     {

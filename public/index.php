@@ -56,7 +56,7 @@ $rotas = array_merge(
     require $raizProjeto . '/routes/ajudatroca.php',
     require $raizProjeto . '/routes/rastrearpedido.php',
     require $raizProjeto . '/routes/trocasedevoluções.php',
-    require $raizProjeto . '/routes/faleconosco.php',
+    require $raizProjeto . '/routes/Faleconosco.php',
     require $raizProjeto . '/routes/busca.php',
     require $raizProjeto . '/routes/informatica.php',
     require $raizProjeto . '/routes/Centraldeajuda.php',

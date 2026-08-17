@@ -213,12 +213,84 @@
     <!-- Navbar -->
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
-    <main>
-        error
+    <main class="py-5">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="h4 mb-0 fw-bold">Produtos</h2>
+            </div>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                <?php if (!empty($produtos)): ?>
+                    <?php foreach ($produtos as $produto): ?>
+                        <div class="col">
+                            <div class="card h-100 shadow-sm position-relative">
+                                
+                                <!-- Badge de Desconto / Oferta (Opcional) -->
+                                <?php if (!empty($produto['preco_antigo']) && $produto['preco_antigo'] > $produto['preco']): ?>
+                                    <span class="badge bg-danger badge-discount">Oferta</span>
+                                <?php endif; ?>
+
+                                <!-- Imagem do Produto com Fallback -->
+                                <?php if (!empty($produto['imagem']) && file_exists('assets/img/produtos/' . $produto['imagem'])): ?>
+                                    <img src="assets/img/produtos/<?= htmlspecialchars($produto['imagem'], ENT_QUOTES, 'UTF-8') ?>" 
+                                         class="card-img-top" 
+                                         alt="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>">
+                                <?php else: ?>
+                                    <div class="img-fallback">
+                                        <i class="bi bi-image text-secondary"></i>
+                                    </div>
+                                <?php endif; ?>
+
+                                <!-- Corpo do Card -->
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title h6 text-dark text-truncate" title="<?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>">
+                                        <?= htmlspecialchars($produto['nome'], ENT_QUOTES, 'UTF-8') ?>
+                                    </h5>
+
+                                    <!-- Preços -->
+                                    <div class="mt-auto pt-2 mb-3">
+                                        <?php if (!empty($produto['preco_antigo']) && $produto['preco_antigo'] > $produto['preco']): ?>
+                                            <span class="product-old-price d-block">
+                                                R$ <?= number_format((float) $produto['preco_antigo'], 2, ',', '.') ?>
+                                            </span>
+                                        <?php endif; ?>
+                                        <span class="product-current-price">
+                                            R$ <?= number_format((float) $produto['preco'], 2, ',', '.') ?>
+                                        </span>
+                                    </div>
+
+                                    <!-- Ações (Botões) -->
+                                    <div class="d-grid gap-2">
+                                        <a href="produto/<?= htmlspecialchars($produto['slug'] ?? $produto['id'], ENT_QUOTES, 'UTF-8') ?>" 
+                                           class="btn btn-outline-secondary btn-sm">
+                                            <i class="bi bi-eye me-1"></i> Ver detalhes
+                                        </a>
+
+                                        <form action="carrinho/adicionar" method="POST" class="d-grid">
+                                            <input type="hidden" name="produto_id" value="<?= htmlspecialchars($produto['id'], ENT_QUOTES, 'UTF-8') ?>">
+                                            <button type="submit" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-cart-plus me-1"></i> Adicionar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <div class="col-12 text-center py-5">
+                        <i class="bi bi-box-seam display-1 text-muted"></i>
+                        <p class="mt-3 text-muted fs-5">Nenhum produto encontrado nesta categoria.</p>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
     </main>
 
     <!-- Rodapé -->
     <?php require_once APP_ROOT . '/views/layouts/site/footer.php'; ?>
+    
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

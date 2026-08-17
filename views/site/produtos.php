@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
 
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -76,61 +77,20 @@
             border-bottom-left-radius: 0;
         }
 
-        /* Hero Banner */
-        .hero-section {
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-            color: #fff;
-            padding: 5rem 0;
-            border-radius: 0.5rem;
-        }
-
-        .hero-section .lead {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        /* Benefícios */
-        .benefit-box {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .benefit-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important;
-        }
-
-        /* Cards Gerais (Categorias e Produtos) */
+        /* Cards Gerais */
         .card {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(0,0,0,.08);
+            border: 1px solid rgba(0, 0, 0, .08);
         }
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
         }
 
         .card-img-top {
             object-fit: cover;
             height: 200px;
-        }
-
-        .category-card .card-img-top {
-            height: 160px;
-        }
-
-        /* Tratamento visual para imagens ausentes */
-        .img-fallback {
-            background-color: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c757d;
-            font-size: 2.5rem;
-            height: 200px;
-        }
-
-        .category-card .img-fallback {
-            height: 160px;
         }
 
         /* Ofertas e Selos */
@@ -153,12 +113,13 @@
             color: var(--primary-color);
         }
 
-        /* Banner Promocional */
-        .promo-banner {
-            background: linear-gradient(45deg, #212529, #343a40);
-            color: #fff;
-            border-radius: 0.5rem;
+        /* Trunca títulos longos em até 2 linhas */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
+            min-height: 2.5rem;
         }
 
         /* Rodapé */
@@ -192,6 +153,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Cabeçalho superior -->
@@ -213,19 +175,96 @@
     <!-- Navbar -->
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
-    <main>
+    <!-- Conteúdo Principal -->
+    <main class="py-5">
         <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    produtos
-                </div>
+            <!-- Cabeçalho da Seção -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="h4 mb-0 fw-bold">Produtos em Destaque</h2>
+                <a href="produtos" class="text-decoration-none">Ver todos <i class="bi bi-arrow-right"></i></a>
+            </div>
+
+            <!-- Grid de Produtos -->
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+                <?php if (!empty($produtos)): ?>
+                    <?php foreach ($produtos as $produto): ?>
+                        <div class="col">
+                            <div class="card h-100 position-relative shadow-sm">
+
+                                <!-- Badge de Desconto -->
+                                <?php if (!empty($produto['preco_antigo']) && $produto['preco_antigo'] > $produto['preco']): ?>
+                                    <span class="badge bg-danger badge-discount">
+                                        -<?= round((($produto['preco_antigo'] - $produto['preco']) / $produto['preco_antigo']) * 100) ?>%
+                                    </span>
+                                <?php endif; ?>
+
+                                <!-- Imagem do Produto com Imagem Padrão (Placeholder) -->
+                                <a href="produto/<?= $produto['slug'] ?? $produto['id'] ?>">
+                                    <?php if (!empty($produto['imagem']) && file_exists('assets/img/produtos/' . $produto['imagem'])): ?>
+                                        <img src="assets/img/produtos/<?= htmlspecialchars($produto['imagem']) ?>" class="card-img-top" alt="<?= htmlspecialchars($produto['nome']) ?>">
+                                    <?php else: ?>
+                                        <!-- Imagem padrão caso o produto não tenha foto -->
+                                        <img src="https://via.placeholder.com/300x200?text=Sem+Imagem" class="card-img-top" alt="Sem imagem disponível">
+                                    <?php endif; ?>
+                                </a>
+
+                                <!-- Informações do Produto -->
+                                <div class="card-body d-flex flex-column">
+                                    <?php if (!empty($produto['categoria_nome'])): ?>
+                                        <small class="text-muted mb-1"><?= htmlspecialchars($produto['categoria_nome']) ?></small>
+                                    <?php endif; ?>
+
+                                    <h5 class="card-title h6 mb-2">
+                                        <a href="produto/<?= $produto['slug'] ?? $produto['id'] ?>" class="text-decoration-none text-dark line-clamp-2">
+                                            <?= htmlspecialchars($produto['nome']) ?>
+                                        </a>
+                                    </h5>
+
+                                    <div class="mt-auto pt-2">
+                                        <?php if (!empty($produto['preco_antigo'])): ?>
+                                            <div class="product-old-price">R$ <?= number_format($produto['preco_antigo'], 2, ',', '.') ?></div>
+                                        <?php endif; ?>
+                                        <div class="product-current-price">R$ <?= number_format($produto['preco'], 2, ',', '.') ?></div>
+                                    </div>
+                                </div>
+
+                                <!-- Botões de Ação -->
+                                <div class="card-footer bg-transparent border-top-0 pt-0 pb-3">
+                                    <div class="d-grid gap-2">
+                                        <!-- Adicionar ao Carrinho -->
+                                        <form action="carrinho/adicionar" method="POST">
+                                            <input type="hidden" name="produto_id" value="<?= $produto['id'] ?>">
+                                            <button type="submit" class="btn btn-primary w-100 d-flex align-items-center justify-content-center gap-2">
+                                                <i class="bi bi-cart-plus"></i> Adicionar ao carrinho
+                                            </button>
+                                        </form>
+
+                                        <!-- Ver detalhes -->
+                                        <a href="produto/<?= $produto['slug'] ?? $produto['id'] ?>" class="btn btn-outline-secondary w-100">
+                                            Ver detalhes
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <!-- Mensagem quando não há produtos -->
+                    <div class="col-12 text-center py-5">
+                        <i class="bi bi-box-seam display-1 text-muted"></i>
+                        <p class="mt-3 text-muted fs-5">Nenhum produto cadastrado ou encontrado.</p>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
     </main>
 
     <!-- Rodapé -->
     <?php require_once APP_ROOT . '/views/layouts/site/footer.php'; ?>
+
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>

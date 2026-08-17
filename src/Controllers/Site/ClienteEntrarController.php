@@ -1,11 +1,10 @@
-
 <?php
 declare(strict_types=1);
 namespace App\Controllers\Site;
 use App\Helpers\IdSeguro;
 use App\Repositories\CategoriaRepository;
 use RuntimeException;
-class ClienteEntrarController
+class OfertasController
 {
     public function index(): void
     {
@@ -66,7 +65,7 @@ class ClienteEntrarController
         */
         $arquivoView =
             $raizProjeto
-            . '/views/site/clienteentar.php';
+            . '/views/site/ofertas.php';
         if (!is_file($arquivoView)) {
             throw new RuntimeException(
                 'A página de ofertas não foi encontrada.'
