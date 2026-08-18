@@ -213,8 +213,147 @@
     <!-- Navbar -->
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
-    <main>
-        fale conosco
+    
+    <main class="py-5">
+        <div class="container">
+            <!-- Cabeçalho da Página -->
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="fw-bold mb-3">Fale Conosco</h1>
+                    <p class="lead text-muted">
+                        Tem alguma dúvida, sugestão ou precisa de ajuda com seu pedido? Envie uma mensagem ou entre em contato pelos nossos canais.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Canais Rápidos de Contato -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="p-4 bg-light rounded-3 text-center h-100 border benefit-box">
+                        <i class="bi bi-telephone-fill fs-1 text-primary mb-3 d-inline-block"></i>
+                        <h5 class="fw-bold">Atendimento Telefônico</h5>
+                        <p class="text-muted small mb-2">Segunda a Sexta, das 8h às 18h</p>
+                        <a href="tel:11999999999" class="fw-bold text-decoration-none text-primary">(11) 99999-9999</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-light rounded-3 text-center h-100 border benefit-box">
+                        <i class="bi bi-whatsapp fs-1 text-success mb-3 d-inline-block"></i>
+                        <h5 class="fw-bold">WhatsApp</h5>
+                        <p class="text-muted small mb-2">Respostas rápidas em horário comercial</p>
+                        <a href="https://wa.me/5511999999999" target="_blank" class="fw-bold text-decoration-none text-success">
+                            Conversar no WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-4 bg-light rounded-3 text-center h-100 border benefit-box">
+                        <i class="bi bi-envelope-fill fs-1 text-primary mb-3 d-inline-block"></i>
+                        <h5 class="fw-bold">E-mail</h5>
+                        <p class="text-muted small mb-2">Respondemos em até 24 horas úteis</p>
+                        <a href="mailto:contato@lojaonline.com.br" class="fw-bold text-decoration-none text-primary">contato@lojaonline.com.br</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulário + Informações de Endereço -->
+            <div class="row g-4">
+                <!-- Formulário de Mensagem -->
+                <div class="col-lg-7">
+                    <div class="card shadow-sm border-0 p-4 p-md-5">
+                        <h3 class="fw-bold mb-4"><i class="bi bi-send text-primary me-2"></i>Envie uma Mensagem</h3>
+                        
+                        <form action="fale-conosco/enviar" method="POST" class="needs-validation" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label fw-semibold">Nome Completo</label>
+                                    <input type="text" class="form-control" id="name" name="nome" placeholder="Seu nome" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label fw-semibold">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="seu@email.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label fw-semibold">Telefone / WhatsApp</label>
+                                    <input type="tel" class="form-control" id="phone" name="telefone" placeholder="(11) 99999-9999">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="subject" class="form-label fw-semibold">Assunto</label>
+                                    <select class="form-select" id="subject" name="assunto" required>
+                                        <option value="" selected disabled>Selecione um assunto</option>
+                                        <option value="duvida">Dúvidas sobre produtos</option>
+                                        <option value="pedido">Informações sobre meu pedido</option>
+                                        <option value="troca">Troca e Devolução</option>
+                                        <option value="elogio_reclamacao">Elogio ou Reclamação</option>
+                                        <option value="outro">Outros assuntos</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="order_number" class="form-label fw-semibold">Número do Pedido <span class="text-muted fw-normal">(Opcional)</span></label>
+                                    <input type="text" class="form-control" id="order_number" name="pedido" placeholder="Ex: #10492">
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label fw-semibold">Mensagem</label>
+                                    <textarea class="form-control" id="message" name="mensagem" rows="5" placeholder="Escreva sua mensagem detalhadamente..." required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100 fw-semibold">
+                                        <i class="bi bi-send-fill me-2"></i>Enviar Mensagem
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Detalhes de Endereço e Horários -->
+                <div class="col-lg-5">
+                    <div class="card shadow-sm border-0 p-4 p-md-5 h-100 bg-light">
+                        <h4 class="fw-bold mb-4">Nossa Sede</h4>
+                        
+                        <ul class="list-unstyled mb-4">
+                            <li class="d-flex mb-3">
+                                <i class="bi bi-geo-alt-fill text-primary fs-5 me-3"></i>
+                                <div>
+                                    <strong>Endereço:</strong><br>
+                                    <span class="text-secondary">Av. Paulista, 1000 - Bela Vista<br>São Paulo - SP, CEP: 01310-100</span>
+                                </div>
+                            </li>
+                            <li class="d-flex mb-3">
+                                <i class="bi bi-clock-fill text-primary fs-5 me-3"></i>
+                                <div>
+                                    <strong>Horário de Funcionamento:</strong><br>
+                                    <span class="text-secondary">
+                                        Segunda a Sexta: 08:00 às 18:00<br>
+                                        Sábado: 09:00 às 13:00
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="d-flex">
+                                <i class="bi bi-building-fill text-primary fs-5 me-3"></i>
+                                <div>
+                                    <strong>CNPJ:</strong><br>
+                                    <span class="text-secondary">00.000.000/0001-00</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <hr class="my-4">
+
+                        <h5 class="fw-bold mb-3">Localização</h5>
+                        <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm border">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.098118833895!2d-46.65390548502213!3d-23.56309938468087!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%201000%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001310-100!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Rodapé -->

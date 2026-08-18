@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
 
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -95,18 +96,18 @@
 
         .benefit-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .08) !important;
         }
 
         /* Cards Gerais (Categorias e Produtos) */
         .card {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(0,0,0,.08);
+            border: 1px solid rgba(0, 0, 0, .08);
         }
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
         }
 
         .card-img-top {
@@ -192,6 +193,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Cabeçalho superior -->
@@ -217,7 +219,115 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    Criar conta
+                    <main class="py-5 bg-light">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-10 col-lg-8 col-xl-7">
+
+                                    <!-- Cartão Principal de Cadastro -->
+                                    <div class="card border-0 shadow-lg rounded-3">
+                                        <div class="card-body p-4 p-sm-5">
+
+                                            <!-- Cabeçalho -->
+                                            <div class="text-center mb-4">
+                                                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                                    <i class="bi bi-person-plus-fill fs-3"></i>
+                                                </div>
+                                                <h3 class="fw-bold mb-1">Crie sua Conta</h3>
+                                                <p class="text-muted small">Preencha os campos abaixo para se cadastrar e aproveitar nossas ofertas</p>
+                                            </div>
+
+                                            <!-- Formulário de Cadastro -->
+                                            <form action="cadastrar/salvar" method="POST" class="needs-validation" novalidate>
+
+                                                <div class="row g-3">
+                                                    <!-- Nome Completo -->
+                                                    <div class="col-12">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="nome" name="nome" placeholder="Seu nome completo" required>
+                                                            <label for="nome"><i class="bi bi-person me-2"></i>Nome Completo</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- E-mail -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" required>
+                                                            <label for="email"><i class="bi bi-envelope me-2"></i>E-mail</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- CPF -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="000.000.000-00" required>
+                                                            <label for="cpf"><i class="bi bi-card-heading me-2"></i>CPF</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Telefone / WhatsApp -->
+                                                    <div class="col-12">
+                                                        <div class="form-floating">
+                                                            <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(00) 00000-0000" required>
+                                                            <label for="telefone"><i class="bi bi-telephone me-2"></i>Telefone / WhatsApp</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Senha -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Sua senha" minlength="8" required>
+                                                            <label for="senha"><i class="bi bi-lock me-2"></i>Senha (mín. 8 caracteres)</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Confirmar Senha -->
+                                                    <div class="col-md-6">
+                                                        <div class="form-floating">
+                                                            <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" placeholder="Confirme sua senha" required>
+                                                            <label for="confirmar_senha"><i class="bi bi-shield-lock me-2"></i>Confirmar Senha</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Termos e Privacidade -->
+                                                    <div class="col-12 my-3">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="termos" name="termos" required>
+                                                            <label class="form-check-label small text-muted" for="termos">
+                                                                Li e concordo com os <a href="termos" class="text-primary text-decoration-none" target="_blank">Termos de Uso</a> e a <a href="privacidade" class="text-primary text-decoration-none" target="_blank">Política de Privacidade</a>.
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check mt-2">
+                                                            <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" checked>
+                                                            <label class="form-check-label small text-muted" for="newsletter">
+                                                                Desejo receber promoções e novidades por e-mail.
+                                                            </label>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Botão Cadastrar -->
+                                                    <div class="col-12">
+                                                        <button type="submit" class="btn btn-primary btn-lg w-100 fw-bold py-3">
+                                                            <i class="bi bi-check-circle me-2"></i>Finalizar Cadastro
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+                                            <!-- Já possui conta -->
+                                            <div class="text-center border-top mt-4 pt-3">
+                                                <p class="small text-muted mb-0">Já tem uma conta cadastrada?</p>
+                                                <a href="entrar" class="fw-bold text-primary text-decoration-none">Fazer Login</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </main>
                 </div>
             </div>
         </div>
@@ -228,4 +338,5 @@
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>

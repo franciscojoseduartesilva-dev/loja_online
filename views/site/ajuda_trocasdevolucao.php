@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
 
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -95,18 +96,18 @@
 
         .benefit-box:hover {
             transform: translateY(-3px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important;
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .08) !important;
         }
 
         /* Cards Gerais (Categorias e Produtos) */
         .card {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(0,0,0,.08);
+            border: 1px solid rgba(0, 0, 0, .08);
         }
 
         .card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
         }
 
         .card-img-top {
@@ -192,6 +193,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Cabeçalho superior -->
@@ -214,7 +216,171 @@
     <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
 
     <main>
-        trocas
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <main class="py-5">
+                        <div class="container">
+                            <!-- Cabeçalho da Página -->
+                            <div class="row mb-5">
+                                <div class="col-lg-8 mx-auto text-center">
+                                    <h1 class="fw-bold mb-3">Política de Trocas e Devoluções</h1>
+                                    <p class="lead text-muted">
+                                        Entenda o passo a passo e as regras para trocar ou devolver o seu produto com facilidade.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Regras Rápidas / Destaques -->
+                            <div class="row g-4 mb-5">
+                                <div class="col-md-4">
+                                    <div class="p-4 bg-light rounded-3 text-center h-100 border benefit-box">
+                                        <i class="bi bi-arrow-counterclockwise fs-1 text-primary mb-3 d-inline-block"></i>
+                                        <h5 class="fw-bold">Arrependimento</h5>
+                                        <p class="text-muted small mb-0">Até <strong>7 dias corridos</strong> após o recebimento para desistir da compra sem custos.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-4 bg-light rounded-3 text-center h-100 border benefit-box">
+                                        <i class="bi bi-shield-exclamation fs-1 text-primary mb-3 d-inline-block"></i>
+                                        <h5 class="fw-bold">Defeito ou Avaria</h5>
+                                        <p class="text-muted small mb-0">Até <strong>90 dias corridos</strong> de garantia legal para solicitar reparo ou substituição.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-4 bg-light rounded-3 text-center h-100 border benefit-box">
+                                        <i class="bi bi-box-seam fs-1 text-primary mb-3 d-inline-block"></i>
+                                        <h5 class="fw-bold">Logística Reversa</h5>
+                                        <p class="text-muted small mb-0">Enviamos um código de postagem para você devolver o item pelos Correios gratuitamente.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Passo a Passo para Troca ou Devolução -->
+                            <div class="row mb-5">
+                                <div class="col-lg-10 mx-auto">
+                                    <div class="card shadow-sm border-0 p-4 p-md-5">
+                                        <h3 class="fw-bold mb-4"><i class="bi bi-journal-check text-primary me-2"></i>Como solicitar a troca em 4 passos</h3>
+
+                                        <div class="row g-4">
+                                            <div class="col-md-6">
+                                                <div class="d-flex">
+                                                    <div class="badge bg-primary rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; min-width: 36px;">1</div>
+                                                    <div>
+                                                        <h6 class="fw-bold">Acesse a Central de Atendimento</h6>
+                                                        <p class="text-muted small">Entre em contato via e-mail ou WhatsApp informando o número do pedido e o CPF do comprador.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex">
+                                                    <div class="badge bg-primary rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; min-width: 36px;">2</div>
+                                                    <div>
+                                                        <h6 class="fw-bold">Informe o Motivo</h6>
+                                                        <p class="text-muted small">Descreva o motivo (arrependimento, tamanho, defeito) e envie fotos/vídeos se houver avaria.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex">
+                                                    <div class="badge bg-primary rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; min-width: 36px;">3</div>
+                                                    <div>
+                                                        <h6 class="fw-bold">Receba a Autorização de Postagem</h6>
+                                                        <p class="text-muted small">Nossa equipe gerará um código de logística reversa para que você embale o produto e faça a postagem sem custo.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex">
+                                                    <div class="badge bg-primary rounded-circle me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; min-width: 36px;">4</div>
+                                                    <div>
+                                                        <h6 class="fw-bold">Receba a Troca ou Reembolso</h6>
+                                                        <p class="text-muted small">Após o recebimento e triagem no Centro de Distribuição, faremos o envio do novo produto ou o estorno do valor.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Detalhes e Condições -->
+                            <div class="row mb-5">
+                                <div class="col-lg-10 mx-auto">
+                                    <h4 class="fw-bold mb-3">Condições do Produto</h4>
+                                    <p class="text-secondary">Para que a troca ou devolução seja aceita, certifique-se de que o produto cumpre os requisitos abaixo:</p>
+
+                                    <ul class="list-group list-group-flush mb-4 shadow-sm rounded border">
+                                        <li class="list-group-item py-3">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i> Estar acompanhado da <strong>Nota Fiscal</strong> (DANFE).
+                                        </li>
+                                        <li class="list-group-item py-3">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i> Estar em sua <strong>embalagem original</strong>, sem violação e sem sinais de uso.
+                                        </li>
+                                        <li class="list-group-item py-3">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i> Conter todos os <strong>manuais, cabos e acessórios</strong> inclusos na caixa.
+                                        </li>
+                                        <li class="list-group-item py-3">
+                                            <i class="bi bi-check-circle-fill text-success me-2"></i> Lacre de segurança ou selo de garantia do fabricante intacto.
+                                        </li>
+                                    </ul>
+
+                                    <h4 class="fw-bold mb-3">Prazos e Formas de Reembolso</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered align-middle">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Forma de Pagamento Inicial</th>
+                                                    <th>Forma de Reembolso</th>
+                                                    <th>Prazo de Processamento</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-secondary">
+                                                <tr>
+                                                    <td><strong>Pix</strong></td>
+                                                    <td>Transferência Pix para a mesma conta</td>
+                                                    <td>Até 2 dias úteis após a análise do produto</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Cartão de Crédito</strong></td>
+                                                    <td>Estorno na fatura do cartão</td>
+                                                    <td>Solicitado em até 3 dias úteis (pode constar em até 2 faturas)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>Boleto Bancário</strong></td>
+                                                    <td>Depósito em conta corrente em nome do titular</td>
+                                                    <td>Até 5 dias úteis após o envio dos dados bancários</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Solicitar Troca / Dúvidas -->
+                            <div class="row">
+                                <div class="col-lg-10 mx-auto">
+                                    <div class="p-4 p-md-5 bg-light rounded-3 text-center border benefit-box">
+                                        <i class="bi bi-headset fs-1 text-primary mb-3 d-inline-block"></i>
+                                        <h4 class="fw-bold">Precisa solicitar uma troca agora?</h4>
+                                        <p class="text-muted mb-4">Entre em contato direto com a nossa equipe de suporte e informe o número do seu pedido.</p>
+                                        <a href="https://wa.me/5511999999999" target="_blank" class="btn btn-primary btn-lg me-sm-2 mb-2 mb-sm-0">
+                                            <i class="bi bi-whatsapp me-2"></i> Iniciar Troca no WhatsApp
+                                        </a>
+                                        <a href="ajuda" class="btn btn-outline-secondary btn-lg mb-2 mb-sm-0">
+                                            Central de Ajuda
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+
+                </div>
+
+            </div>
+        </div>
     </main>
 
     <!-- Rodapé -->
@@ -222,4 +388,5 @@
     <!-- Bootstrap Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>
