@@ -13,25 +13,11 @@ class HomeController
 {
     public function index(): void
     {
-        /*
-        |--------------------------------------------------------------------------
-        | 1. Raiz do projeto
-        |--------------------------------------------------------------------------
-        */
-        $raizProjeto =
-            dirname(__DIR__, 3);
+        
+        $raizProjeto =dirname(__DIR__, 3);
+        require_once $raizProjeto . '/database/conexao.php';
 
-
-        /*
-        |--------------------------------------------------------------------------
-        | 2. Conexão com o banco
-        |--------------------------------------------------------------------------
-        */
-        require_once $raizProjeto
-            . '/database/conexao.php';
-
-        $pdo =
-            \Config::connect();
+        $pdo =\Config::connect();
 
 
         /*
@@ -108,25 +94,5 @@ class HomeController
         |--------------------------------------------------------------------------
         */
         require $arquivoView;
-
-        $categoriaRepository = new CategoriaRepository($pdo);
-        $categorias = $categoriaRepository->listarAtivas();
-        $produtoRepository = new ProdutoRepository($pdo);
-        $produtosDestaque = $produtoRepository->listarDestaques(10);
-        $maisVendidos = $produtoRepository->listarMaisVendidos(10);
-
-        foreach ($categorias as &$categoria) {
-
-        $categoria['id_seguro'] =
-        IdSeguro::criptografar(
-            (int) $categoria['id']
-        );
-        }
-
-        unset($categoria);
-
-
     }
-
-    
 }

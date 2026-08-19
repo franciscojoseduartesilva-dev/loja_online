@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 ?>
@@ -79,13 +78,8 @@ declare(strict_types=1);
                         </div>
 
                     <?php endif; ?>
-
-                    <form
-                        action="<?=
-                            BASE_URL
-                        ?>/login-admin"
-                        method="post"
-                    >
+<?=BASE_URL?>
+                    <form action="<?=BASE_URL?>/loginadmin" method="post">
 
                         <input
                             type="hidden"

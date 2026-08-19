@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-use App\Controllers\Site\ofertasController;
+use App\Controllers\Site\OfertasController;
 
 return [
     [
         'method' => 'GET',
         'path' => '/ofertas',
         'action' => [
-            ofertasController::class,
+            OfertasController::class,
             'index',
         ],
     ],
+    
 ];

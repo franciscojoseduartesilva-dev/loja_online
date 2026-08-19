@@ -1,429 +1,813 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Helpers\View;
+
+$tituloPagina = $tituloPagina   ?? 'Busca';
+$descricaoPagina = $descricaoPagina ?? 'Loja online com produtos, ofertas, atendimento ao cliente e compra segura.';
+$baseUrl = defined('BASE_URL') ? BASE_URL : ''; ?>
 <!doctype html>
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Online | Produtos, ofertas e tecnologia</title>
-    <meta name="description" content="Encontre produtos de informática, celulares, acessórios, games e ofertas especiais em nossa loja online.">
-    <meta name="keywords" content="loja online, tecnologia, informática, celulares, ofertas, ecommerce">
-    <meta name="author" content="Loja Online">
-
-    <!-- Open Graph Básico -->
-    <meta property="og:title" content="Loja Online | Produtos, ofertas e tecnologia">
-    <meta property="og:description" content="Encontre produtos de informática, celulares, acessórios, games e ofertas especiais em nossa loja online.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://localhost/loja_online/public/">
-    <meta property="og:image" content="assets/img/og-image.jpg">
-
-    <!-- Favicon -->
-    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
-
-    <!-- Base URL -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+        name="description"
+        content="">
+    <title><?= htmlspecialchars($tituloPagina, ENT_QUOTES, 'UTF-8');  ?></title>
+    <!--
+        Caminho-base das rotas no XAMPP.
+        Quando o projeto funcionar sem /public, altere para:
+        <base href="/loja_online/">
+    -->
     <base href="/loja_online/public/">
-
-    <!-- Bootstrap 5.3 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <!-- CSS Personalizado -->
-    <style>
-        :root {
-            --primary-color: #0d6efd;
-            --secondary-color: #6c757d;
-            --dark-color: #212529;
-            --light-bg: #f8f9fa;
-        }
-
-        body {
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            color: var(--dark-color);
-            background-color: #fff;
-        }
-
-        /* Top Bar */
-        .top-bar {
-            background-color: var(--dark-color);
-            color: #adb5bd;
-            font-size: 0.875rem;
-        }
-
-        .top-bar a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .top-bar a:hover {
-            color: #fff;
-        }
-
-        /* Navbar Principal */
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--primary-color) !important;
-        }
-
-        .search-form .form-control {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .search-form .btn {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-        }
-
-        /* Hero Banner */
-        .hero-section {
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-            color: #fff;
-            padding: 5rem 0;
-            border-radius: 0.5rem;
-        }
-
-        .hero-section .lead {
-            color: rgba(255, 255, 255, 0.85);
-        }
-
-        /* Benefícios */
-        .benefit-box {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .benefit-box:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .08) !important;
-        }
-
-        /* Cards Gerais (Categorias e Produtos) */
-        .card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(0, 0, 0, .08);
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-        }
-
-        .card-img-top {
-            object-fit: cover;
-            height: 200px;
-        }
-
-        .category-card .card-img-top {
-            height: 160px;
-        }
-
-        /* Tratamento visual para imagens ausentes */
-        .img-fallback {
-            background-color: #e9ecef;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6c757d;
-            font-size: 2.5rem;
-            height: 200px;
-        }
-
-        .category-card .img-fallback {
-            height: 160px;
-        }
-
-        /* Ofertas e Selos */
-        .badge-discount {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 2;
-        }
-
-        .product-old-price {
-            text-decoration: line-through;
-            font-size: 0.875rem;
-            color: var(--secondary-color);
-        }
-
-        .product-current-price {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        /* Banner Promocional */
-        .promo-banner {
-            background: linear-gradient(45deg, #212529, #343a40);
-            color: #fff;
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-
-        /* Rodapé */
-        footer {
-            background-color: #1a1d20;
-            color: #adb5bd;
-            font-size: 0.9rem;
-        }
-
-        footer h5 {
-            color: #fff;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        footer a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        footer a:hover {
-            color: #fff;
-        }
-
-        /* Responsividade Ajustada */
-        @media (max-width: 991.98px) {
-            .top-bar {
-                display: none;
-            }
-        }
-    </style>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="<?= htmlspecialchars($baseUrl . '/assets/css/site.css', ENT_QUOTES, 'UTF-8') ?>">
 </head>
 
 <body>
-
-    <!-- Cabeçalho superior -->
-    <div class="top-bar py-2 d-none d-lg-block">
+    <!-- ============================================================
+         1. BARRA SUPERIOR
+    ============================================================= -->
+    <?php require_once APP_ROOT  . '/views/componentes/site/sections/barraSuperior.php'; ?>
+    <!-- ============================================================
+         2. MENU PRINCIPAL
+    ============================================================= -->
+    <?php View::componente('header', ['categorias' => $categorias,]); ?>
+    <main class="py-5">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <span class="me-3"><i class="bi bi-truck me-1"></i> Frete grátis para todo o Brasil nas compras acima de R$ 199</span>
-                    <span><i class="bi bi-headset me-1"></i> Atendimento: (11) 99999-9999</span>
+
+            <!-- =====================================================
+             TÍTULO DA PÁGINA
+        ====================================================== -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <h1 class="h2 fw-bold mb-2">
+                        Resultados da busca
+                    </h1>
+
+                    <p class="text-muted mb-0">
+                        Confira os produtos encontrados para sua pesquisa.
+                    </p>
                 </div>
-                <div class="col-md-6 text-end">
-                    <a href="rastrear-pedido" class="me-3">Rastrear pedido</a>
-                    <a href="ajuda">Central de ajuda</a>
+            </div>
+
+            <!-- =====================================================
+             CAMPO DE BUSCA
+        ====================================================== -->
+            <div class="row mb-5">
+                <div class="col-12 col-lg-8">
+
+                    <div
+                        class="
+        alert
+        alert-light
+        border
+    ">
+
+                        Digite um nome, descrição ou
+                        categoria para pesquisar.
+
+                    </div>
+
+
+                    <form action="<?=
+                                    htmlspecialchars(
+                                        $baseUrl
+                                            . '/buscar',
+                                        ENT_QUOTES,
+                                        'UTF-8'
+                                    )
+                                    ?>" method="get">
+                        <div class="input-group input-group-lg">
+
+                            <input
+                                type="search"
+                                name="q"
+                                class="form-control"
+
+                                value="<?=
+                                        htmlspecialchars(
+                                            $termo,
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        )
+                                        ?>"
+                                placeholder="Digite o nome do produto...">
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary">
+                                Buscar
+                            </button>
+
+                        </div>
+                    </form>
+
                 </div>
+            </div>
+
+            <!-- =====================================================
+             INFORMAÇÕES DA BUSCA
+        ====================================================== -->
+
+            <?php if (
+                $termo !== ''
+                &&
+                $produtos === []
+            ): ?>
+
+                <div
+                    class="
+            alert
+            alert-light
+            border
+            text-center
+            py-5
+        "
+                    role="alert">
+
+                    <h2
+                        class="
+                h4
+                fw-bold
+                mb-3
+            ">
+
+                        Nenhum produto encontrado
+
+                    </h2>
+
+
+                    <p
+                        class="
+                text-muted
+                mb-0
+            ">
+
+                        Tente realizar uma nova busca
+                        utilizando outro nome,
+                        descrição ou categoria.
+
+                    </p>
+
+                </div>
+
+            <?php endif; ?>
+
+
+            <div class="row mb-4">
+                <div class="col-12">
+
+                    <div
+                        class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <?php if (
+                            $termo !== ''
+                        ): ?>
+
+                            <p class="mb-0">
+
+                                Resultado da busca por:
+
+                                <strong>
+
+                                    "<?=
+                                        htmlspecialchars(
+                                            $termo,
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        )
+                                        ?>"
+
+                                </strong>
+
+                            </p>
+
+
+                            <span
+                                class="
+            badge
+            text-bg-secondary
+        ">
+
+                                <?=
+                                $totalResultados
+                                ?>
+
+                                produto(s) encontrado(s)
+
+                            </span>
+
+                        <?php endif; ?>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- =====================================================
+             CARDS DOS PRODUTOS
+        ====================================================== -->
+
+
+
+
+            <!-- =====================================================
+     CARDS DOS PRODUTOS
+====================================================== -->
+
+            <?php if ($produtos !== []): ?>
+
+                <div class="row g-4">
+
+                    <?php foreach ($produtos as $produto): ?>
+
+                        <?php
+
+                        /*
+            |--------------------------------------------------------------------------
+            | Dados básicos do produto
+            |--------------------------------------------------------------------------
+            */
+
+                        $nomeProduto =
+                            (string) $produto['nome'];
+
+
+                        $descricaoProduto =
+                            trim(
+                                (string) (
+                                    $produto['descricao']
+                                    ?? ''
+                                )
+                            );
+
+
+                        /*
+            |--------------------------------------------------------------------------
+            | Preço
+            |--------------------------------------------------------------------------
+            */
+
+                        $precoNormal =
+                            (float) $produto['preco'];
+
+
+                        $precoOferta =
+                            isset($produto['preco_oferta'])
+                            && $produto['preco_oferta'] !== null
+                            ? (float) $produto['preco_oferta']
+                            : null;
+
+
+                        $temOferta =
+                            $precoOferta !== null;
+
+
+                        /*
+            |--------------------------------------------------------------------------
+            | Percentual da oferta
+            |--------------------------------------------------------------------------
+            */
+
+                        $percentualOferta =
+                            (float) (
+                                $produto['percentual_oferta']
+                                ?? 0
+                            );
+
+
+                        /*
+            |--------------------------------------------------------------------------
+            | Valor para parcelamento
+            |--------------------------------------------------------------------------
+            */
+
+                        $valorParcelar =
+                            $temOferta
+                            ? $precoOferta
+                            : $precoNormal;
+
+
+                        /*
+            |--------------------------------------------------------------------------
+            | Parcelas
+            |--------------------------------------------------------------------------
+            */
+
+                        $quantidadeParcelas = 10;
+
+
+                        $valorParcela =
+                            $valorParcelar
+                            / $quantidadeParcelas;
+
+
+                        /*
+            |--------------------------------------------------------------------------
+            | Imagem
+            |--------------------------------------------------------------------------
+            */
+
+                        $imagem =
+                            trim(
+                                (string) (
+                                    $produto['imagem']
+                                    ?? ''
+                                )
+                            );
+
+
+                        $imagemPadrao =
+                            $baseUrl
+                            . '/assets/img/produtos/'
+                            . 'sem-imagem.png';
+
+
+                        if ($imagem === '') {
+
+                            $imagem =
+                                $imagemPadrao;
+                        } elseif (
+                            !str_starts_with(
+                                $imagem,
+                                'http://'
+                            )
+                            &&
+                            !str_starts_with(
+                                $imagem,
+                                'https://'
+                            )
+                            &&
+                            !str_starts_with(
+                                $imagem,
+                                '/'
+                            )
+                        ) {
+
+                            $imagem =
+                                $baseUrl
+                                . '/assets/img/produtos/'
+                                . $imagem;
+                        }
+
+                        ?>
+
+
+                        <!-- =================================================
+                 PRODUTO
+            ================================================== -->
+
+                        <div
+                            class="
+                    col-12
+                    col-sm-6
+                    col-lg-4
+                    col-xl-3
+                ">
+
+                            <div
+                                class="
+                        card
+                        h-100
+                        shadow-sm
+                        border-0
+                    ">
+
+
+                                <!-- =========================================
+                         IMAGEM
+                    ========================================== -->
+
+                                <div
+                                    class="
+                            position-relative
+                            p-3
+                            text-center
+                        ">
+
+                                    <img
+                                        src="<?=
+                                                htmlspecialchars(
+                                                    $imagem,
+                                                    ENT_QUOTES,
+                                                    'UTF-8'
+                                                )
+                                                ?>"
+                                        class="
+                                card-img-top
+                                img-fluid
+                            "
+                                        alt="<?=
+                                                htmlspecialchars(
+                                                    $nomeProduto,
+                                                    ENT_QUOTES,
+                                                    'UTF-8'
+                                                )
+                                                ?>"
+                                        loading="lazy"
+                                        onerror="
+                                this.onerror=null;
+                                this.src='<?=
+                                            htmlspecialchars(
+                                                $imagemPadrao,
+                                                ENT_QUOTES,
+                                                'UTF-8'
+                                            )
+                                            ?>';
+                            "
+                                        style="
+                                height: 220px;
+                                object-fit: contain;
+                            ">
+
+
+                                    <!-- DESCONTO -->
+
+                                    <?php if ($temOferta): ?>
+
+                                        <span
+                                            class="
+                                    badge
+                                    text-bg-danger
+                                    position-absolute
+                                    top-0
+                                    end-0
+                                    m-3
+                                ">
+
+                                            <?=
+                                            number_format(
+                                                $percentualOferta,
+                                                0,
+                                                ',',
+                                                '.'
+                                            )
+                                            ?>% OFF
+
+                                        </span>
+
+                                    <?php endif; ?>
+
+                                </div>
+
+
+                                <!-- =========================================
+                         CORPO DO CARD
+                    ========================================== -->
+
+                                <div
+                                    class="
+                            card-body
+                            d-flex
+                            flex-column
+                        ">
+
+
+                                    <!-- CATEGORIA -->
+
+                                    <div class="mb-2">
+
+                                        <span
+                                            class="
+                                    badge
+                                    text-bg-primary
+                                ">
+
+                                            <?=
+                                            htmlspecialchars(
+                                                (string) $produto['categoria'],
+                                                ENT_QUOTES,
+                                                'UTF-8'
+                                            )
+                                            ?>
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <!-- NOME -->
+
+                                    <h2
+                                        class="
+                                h5
+                                card-title
+                                fw-semibold
+                            ">
+
+                                        <?=
+                                        htmlspecialchars(
+                                            $nomeProduto,
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        )
+                                        ?>
+
+                                    </h2>
+
+
+                                    <!-- DESCRIÇÃO -->
+
+                                    <p
+                                        class="
+                                card-text
+                                text-muted
+                                small
+                            ">
+
+                                        <?=
+                                        htmlspecialchars(
+                                            mb_strimwidth(
+                                                $descricaoProduto,
+                                                0,
+                                                120,
+                                                '...'
+                                            ),
+                                            ENT_QUOTES,
+                                            'UTF-8'
+                                        )
+                                        ?>
+
+                                    </p>
+
+
+                                    <!-- =====================================
+                             PREÇO
+                        ====================================== -->
+
+                                    <div class="mt-auto">
+
+
+                                        <?php if ($temOferta): ?>
+
+                                            <!-- PREÇO NORMAL -->
+
+                                            <div class="mb-1">
+
+                                                <small
+                                                    class="
+                                            text-muted
+                                            text-decoration-line-through
+                                        ">
+
+                                                    R$
+
+                                                    <?=
+                                                    number_format(
+                                                        $precoNormal,
+                                                        2,
+                                                        ',',
+                                                        '.'
+                                                    )
+                                                    ?>
+
+                                                </small>
+
+                                            </div>
+
+
+                                            <!-- PREÇO PROMOCIONAL -->
+
+                                            <div
+                                                class="
+                                        fs-4
+                                        fw-bold
+                                        text-success
+                                        mb-1
+                                    ">
+
+                                                R$
+
+                                                <?=
+                                                number_format(
+                                                    $precoOferta,
+                                                    2,
+                                                    ',',
+                                                    '.'
+                                                )
+                                                ?>
+
+                                            </div>
+
+
+                                        <?php else: ?>
+
+
+                                            <!-- PREÇO NORMAL -->
+
+                                            <div
+                                                class="
+                                        fs-4
+                                        fw-bold
+                                        text-primary
+                                        mb-1
+                                    ">
+
+                                                R$
+
+                                                <?=
+                                                number_format(
+                                                    $precoNormal,
+                                                    2,
+                                                    ',',
+                                                    '.'
+                                                )
+                                                ?>
+
+                                            </div>
+
+
+                                        <?php endif; ?>
+
+
+                                        <!-- =====================================
+                                 PARCELAMENTO
+                            ====================================== -->
+
+                                        <p
+                                            class="
+                                    text-muted
+                                    small
+                                    mb-3
+                                ">
+
+                                            ou
+
+                                            <strong>
+
+                                                <?= $quantidadeParcelas ?>x
+
+                                            </strong>
+
+                                            de
+
+                                            <strong>
+
+                                                R$
+
+                                                <?=
+                                                number_format(
+                                                    $valorParcela,
+                                                    2,
+                                                    ',',
+                                                    '.'
+                                                )
+                                                ?>
+
+                                            </strong>
+
+                                            sem juros
+
+                                        </p>
+
+
+                                        <!-- =====================================
+                                 BOTÕES
+                            ====================================== -->
+
+                                        <div class="d-grid gap-2">
+
+                                            <a
+                                                href="<?=
+                                                        htmlspecialchars(
+                                                            $baseUrl
+                                                                . '/produto/detalhes?prod='
+                                                                . urlencode(
+                                                                    $produto['id_seguro']
+                                                                ),
+                                                            ENT_QUOTES,
+                                                            'UTF-8'
+                                                        )
+                                                        ?>"
+                                                class="
+                                        btn
+                                        btn-outline-primary
+                                    ">
+
+                                                Ver detalhes
+
+                                            </a>
+
+
+                                            <form
+                                                action="<?=
+                                                        htmlspecialchars(
+                                                            $baseUrl
+                                                                . '/carrinho/adicionar',
+                                                            ENT_QUOTES,
+                                                            'UTF-8'
+                                                        )
+                                                        ?>"
+                                                method="post">
+
+
+                                                <input
+                                                    type="hidden"
+                                                    name="csrf_token"
+                                                    value="<?=
+                                                            htmlspecialchars(
+                                                                $csrfCarrinho,
+                                                                ENT_QUOTES,
+                                                                'UTF-8'
+                                                            )
+                                                            ?>">
+
+
+                                                <input
+                                                    type="hidden"
+                                                    name="produto"
+                                                    value="<?=
+                                                            htmlspecialchars(
+                                                                $produto['id_seguro'],
+                                                                ENT_QUOTES,
+                                                                'UTF-8'
+                                                            )
+                                                            ?>">
+
+
+                                                <input
+                                                    type="hidden"
+                                                    name="quantidade"
+                                                    value="1">
+
+
+                                                <button
+                                                    type="submit"
+                                                    class="
+            btn
+            btn-primary
+            w-100
+        ">
+
+                                                    Adicionar ao carrinho
+
+                                                </button>
+
+
+                                            </form>
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    <?php endforeach; ?>
+
+                </div>
+
+            <?php endif; ?>
+
+
+            <!-- =====================================================
+             EXEMPLO: NENHUM RESULTADO
+             Exibir este bloco quando não houver produtos.
+        ====================================================== -->
+            <!--
+        <div class="row">
+            <div class="col-12">
+
+                <div
+                    class="alert alert-light border text-center py-5"
+                    role="alert"
+                >
+                    <h2 class="h4 fw-bold mb-3">
+                        Nenhum produto encontrado
+                    </h2>
+
+                    <p class="text-muted mb-0">
+                        Tente realizar uma nova busca utilizando
+                        outro nome ou palavra-chave.
+                    </p>
+                </div>
+
             </div>
         </div>
-    </div>
+        -->
 
-    <!-- Navbar -->
-    <?php require_once APP_ROOT . '/views/layouts/site/header.php'; ?>
-
-    <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <main class="py-5">
-                        <div class="container">
-                            <!-- Cabeçalho de Resultados e Ordenação -->
-                            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 pb-3 border-bottom gap-3">
-                                <div>
-                                    <h1 class="h3 fw-bold mb-1">Resultados para: <span class="text-primary">"<?php echo htmlspecialchars($_GET['q'] ?? 'Smartphones', ENT_QUOTES, 'UTF-8'); ?>"</span></h1>
-                                    <p class="text-muted small mb-0">Encontramos <strong>12 produtos</strong> correspondentes</p>
-                                </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <label for="sort-select" class="form-label mb-0 text-nowrap fw-semibold small">Ordenar por:</label>
-                                    <select id="sort-select" class="form-select form-select-sm" style="min-width: 180px;">
-                                        <option value="relevance" selected>Mais relevantes</option>
-                                        <option value="price-asc">Menor Preço</option>
-                                        <option value="price-desc">Maior Preço</option>
-                                        <option value="rating">Melhor Avaliados</option>
-                                        <option value="newest">Lançamentos</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row g-4">
-                                <!-- Filtros Laterais -->
-                                <aside class="col-lg-3">
-                                    <div class="card border shadow-sm p-3">
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <h5 class="fw-bold mb-0"><i class="bi bi-funnel me-2"></i>Filtros</h5>
-                                            <a href="busca" class="text-decoration-none small text-muted">Limpar</a>
-                                        </div>
-
-                                        <!-- Categoria -->
-                                        <div class="mb-4">
-                                            <h6 class="fw-bold mb-2">Categorias</h6>
-                                            <div class="form-check mb-1">
-                                                <input class="form-check-input" type="checkbox" id="cat-celulares" checked>
-                                                <label class="form-check-label small" for="cat-celulares">Celulares e Smartphones (8)</label>
-                                            </div>
-                                            <div class="form-check mb-1">
-                                                <input class="form-check-input" type="checkbox" id="cat-acessorios">
-                                                <label class="form-check-label small" for="cat-acessorios">Acessórios (3)</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="cat-informatica">
-                                                <label class="form-check-label small" for="cat-informatica">Informática (1)</label>
-                                            </div>
-                                        </div>
-
-                                        <!-- Faixa de Preço -->
-                                        <div class="mb-4">
-                                            <h6 class="fw-bold mb-2">Faixa de Preço</h6>
-                                            <div class="row g-2 mb-2">
-                                                <div class="col-6">
-                                                    <input type="number" class="form-control form-control-sm" placeholder="R$ Mín">
-                                                </div>
-                                                <div class="col-6">
-                                                    <input type="number" class="form-control form-control-sm" placeholder="R$ Máx">
-                                                </div>
-                                            </div>
-                                            <button class="btn btn-outline-primary btn-sm w-100">Aplicar Preço</button>
-                                        </div>
-
-                                        <!-- Marca -->
-                                        <div class="mb-3">
-                                            <h6 class="fw-bold mb-2">Marcas</h6>
-                                            <div class="form-check mb-1">
-                                                <input class="form-check-input" type="checkbox" id="brand-samsung">
-                                                <label class="form-check-label small" for="brand-samsung">Samsung</label>
-                                            </div>
-                                            <div class="form-check mb-1">
-                                                <input class="form-check-input" type="checkbox" id="brand-apple">
-                                                <label class="form-check-label small" for="brand-apple">Apple</label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="brand-xiaomi">
-                                                <label class="form-check-label small" for="brand-xiaomi">Xiaomi</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </aside>
-
-                                <!-- Grid de Produtos e Resultados -->
-                                <section class="col-lg-9">
-                                    <div class="row g-4">
-                                        <!-- Produto 1 -->
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="card h-100 position-relative">
-                                                <span class="badge bg-danger badge-discount">-15%</span>
-                                                <div class="img-fallback rounded-top">
-                                                    <i class="bi bi-phone"></i>
-                                                </div>
-                                                <div class="card-body d-flex flex-column">
-                                                    <span class="text-muted small mb-1">Smartphones</span>
-                                                    <h6 class="card-title fw-bold text-truncate mb-2">Smartphone Pro Max 128GB</h6>
-                                                    <div class="mb-2 text-warning small">
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-half"></i>
-                                                        <span class="text-muted ms-1">(42)</span>
-                                                    </div>
-                                                    <div class="mt-auto">
-                                                        <div class="product-old-price">R$ 2.999,00</div>
-                                                        <div class="product-current-price mb-3">R$ 2.549,15</div>
-                                                        <a href="produto/1" class="btn btn-primary btn-sm w-100">
-                                                            <i class="bi bi-cart-plus me-1"></i> Comprar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Produto 2 -->
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="card h-100 position-relative">
-                                                <div class="img-fallback rounded-top">
-                                                    <i class="bi bi-laptop"></i>
-                                                </div>
-                                                <div class="card-body d-flex flex-column">
-                                                    <span class="text-muted small mb-1">Informática</span>
-                                                    <h6 class="card-title fw-bold text-truncate mb-2">Notebook Core i7 16GB SSD 512GB</h6>
-                                                    <div class="mb-2 text-warning small">
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <span class="text-muted ms-1">(18)</span>
-                                                    </div>
-                                                    <div class="mt-auto">
-                                                        <div class="product-current-price mb-3">R$ 4.299,00</div>
-                                                        <a href="produto/2" class="btn btn-primary btn-sm w-100">
-                                                            <i class="bi bi-cart-plus me-1"></i> Comprar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Produto 3 -->
-                                        <div class="col-sm-6 col-md-4">
-                                            <div class="card h-100 position-relative">
-                                                <span class="badge bg-danger badge-discount">-20%</span>
-                                                <div class="img-fallback rounded-top">
-                                                    <i class="bi bi-headphones"></i>
-                                                </div>
-                                                <div class="card-body d-flex flex-column">
-                                                    <span class="text-muted small mb-1">Acessórios</span>
-                                                    <h6 class="card-title fw-bold text-truncate mb-2">Fone de Ouvido Bluetooth Noise Cancelling</h6>
-                                                    <div class="mb-2 text-warning small">
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star-fill"></i>
-                                                        <i class="bi bi-star"></i>
-                                                        <span class="text-muted ms-1">(89)</span>
-                                                    </div>
-                                                    <div class="mt-auto">
-                                                        <div class="product-old-price">R$ 499,00</div>
-                                                        <div class="product-current-price mb-3">R$ 399,20</div>
-                                                        <a href="produto/3" class="btn btn-primary btn-sm w-100">
-                                                            <i class="bi bi-cart-plus me-1"></i> Comprar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Pagtinação -->
-                                    <nav class="mt-5" aria-label="Navegação dos resultados">
-                                        <ul class="pagination justify-content-center">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                                            </li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item">
-                                                <a class="page-link" href="#">Próximo</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-
-                                    <!-- Exemplo de Estado sem resultados (Opcional: usar via PHP se total == 0) -->
-                                    <!--
-                    <div class="text-center py-5 my-4 bg-light rounded-3 border">
-                        <i class="bi bi-search fs-1 text-muted mb-3 d-inline-block"></i>
-                        <h4 class="fw-bold">Nenhum produto encontrado</h4>
-                        <p class="text-muted">Não encontramos resultados para a sua busca. Tente pesquisar com outros termos.</p>
-                        <a href="produtos" class="btn btn-primary mt-2">Ver todos os produtos</a>
-                    </div>
-                    -->
-                                </section>
-                            </div>
-                        </div>
-                    </main>
-                </div>
-            </div>
         </div>
     </main>
-
-    <!-- Rodapé -->
-    <?php require_once APP_ROOT . '/views/layouts/site/footer.php'; ?>
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- ============================================================
+         9. RODAPÉ
+    ============================================================= -->
+    <?php View::componente('footer'); ?>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

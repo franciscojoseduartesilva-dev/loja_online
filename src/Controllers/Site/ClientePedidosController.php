@@ -1,10 +1,14 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Controllers\Site;
+
 use App\Helpers\IdSeguro;
 use App\Repositories\CategoriaRepository;
 use RuntimeException;
-class OfertasController
+
+class ClientePedidosController
 {
     public function index(): void
     {
@@ -15,6 +19,8 @@ class OfertasController
         */
         $raizProjeto =
             dirname(__DIR__, 3);
+
+
         /*
         |--------------------------------------------------------------------------
         | 2. Conexão com o banco
@@ -22,8 +28,12 @@ class OfertasController
         */
         require_once $raizProjeto
             . '/database/conexao.php';
+
+
         $pdo =
             \Config::connect();
+
+
         /*
         |--------------------------------------------------------------------------
         | 3. Categorias
@@ -33,21 +43,30 @@ class OfertasController
             new CategoriaRepository(
                 $pdo
             );
+
+
         $categorias =
             $categoriaRepository
-            ->listarAtivas();
+                ->listarAtivas();
+
+
         /*
         |--------------------------------------------------------------------------
         | 4. Gera ID seguro das categorias
         |--------------------------------------------------------------------------
         */
         foreach ($categorias as &$categoria) {
+
             $categoria['id_seguro'] =
                 IdSeguro::criptografar(
                     (int) $categoria['id']
                 );
         }
+
+
         unset($categoria);
+
+
         /*
         |--------------------------------------------------------------------------
         | 5. Dados específicos da página
@@ -58,6 +77,8 @@ class OfertasController
         | $ofertas = ...
         |
         */
+
+
         /*
         |--------------------------------------------------------------------------
         | 6. Localiza a View
@@ -65,12 +86,17 @@ class OfertasController
         */
         $arquivoView =
             $raizProjeto
-            . '/views/site/ofertas.php';
+            . '/views/site/cliente_pedidos.php';
+
+
         if (!is_file($arquivoView)) {
+
             throw new RuntimeException(
                 'A página de ofertas não foi encontrada.'
             );
         }
+
+
         /*
         |--------------------------------------------------------------------------
         | 7. Carrega a View
@@ -83,4 +109,3 @@ class OfertasController
         require $arquivoView;
     }
 }
-

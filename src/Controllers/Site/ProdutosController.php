@@ -1,10 +1,16 @@
 <?php
+
 declare(strict_types=1);
+
 namespace App\Controllers\Site;
+
 use App\Helpers\IdSeguro;
 use App\Repositories\CategoriaRepository;
 use App\Repositories\ProdutoRepository;
+use App\Helpers\CsrfCarrinho;
+
 use RuntimeException;
+
 class ProdutosController
 {
     public function index(): void
@@ -69,6 +75,23 @@ class ProdutosController
         $produtos =
             $produtoRepository
             ->listarTodos();
+
+
+
+        foreach (
+            $produtos
+            as &$produto
+        ) {
+
+            $produto['id_seguro'] =
+                IdSeguro::criptografar(
+                    (int)
+                    $produto['id']
+                );
+        }
+
+        unset($produto);
+
         /*
 |--------------------------------------------------------------------------
 | Produtos em destaque
@@ -77,6 +100,21 @@ class ProdutosController
         $produtosDestaque =
             $produtoRepository
             ->listarDestaques(10);
+
+        foreach (
+            $produtosDestaque
+            as &$produto
+        ) {
+
+            $produto['id_seguro'] =
+                IdSeguro::criptografar(
+                    (int)
+                    $produto['id']
+                );
+        }
+
+        unset($produto);
+
         /*
 |--------------------------------------------------------------------------
 | Produtos mais vendidos
@@ -85,6 +123,24 @@ class ProdutosController
         $maisVendidos =
             $produtoRepository
             ->listarMaisVendidos(10);
+
+        foreach (
+            $maisVendidos
+            as &$produto
+        ) {
+
+            $produto['id_seguro'] =
+                IdSeguro::criptografar(
+                    (int)
+                    $produto['id']
+                );
+        }
+
+        unset($produto);
+
+
+        $csrfCarrinho = CsrfCarrinho::gerar();
+
         /*
         |--------------------------------------------------------------------------
         | 6. Localiza a View
@@ -114,4 +170,3 @@ class ProdutosController
         require $arquivoView;
     }
 }
-
