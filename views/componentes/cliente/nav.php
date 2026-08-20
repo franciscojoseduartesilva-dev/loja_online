@@ -53,26 +53,23 @@ $csrfToken =
 
                     <a
                         class="nav-link"
-                        href="<?= BASE_URL ?>/cliente">
+                        href="<?= BASE_URL ?>/Site">
                         <i class="bi bi-speedometer2 me-1"></i>
 
-                        Painel
+                        Site
                     </a>
 
                 </li>
 
                 <li class="nav-item">
 
-                    <a
-                        class="nav-link"
-                        href="<?= BASE_URL ?>/carrinho">
-                        <i class="bi bi-speedometer2 me-1"></i>
+                    <a class="nav-link" href="<?= BASE_URL ?>/carrinho">
+                        <i class="bi bi-cart me-1"></i>
+                        
 
-                        carrinho
                     </a>
 
                 </li>
-
 
                 <!-- PERFIL -->
 
